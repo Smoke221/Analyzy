@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { userModel } = require("../models/user");
 // const { validationResult } = require("express-validator");
 require("dotenv").config();
 
@@ -19,7 +20,9 @@ async function createAccount(req, res) {
     // Check if a user with the given email already exists in the database
     const existingUser = await userModel.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: "User already exists. Please log in." });
+      return res
+        .status(400)
+        .json({ message: "User already exists. Please log in." });
     }
 
     // Create a new user document with the hashed password
@@ -46,7 +49,7 @@ async function login(req, res) {
     // Compare the provided password with the hashed password in the database
     const passwordsMatch = await bcrypt.compare(password, user.password);
     if (!passwordsMatch) {
-      return res.status(401).json({ message: "Invalid credentials." });
+      return res.status(401).json({ message: "Password is incorrect, please try again." });
     }
 
     // Create a JWT token for the user's successful login
