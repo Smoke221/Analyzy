@@ -1,12 +1,12 @@
 const AWS = require("aws-sdk");
 const { fileModel } = require("../models/file");
+const { extractTextFromFile } = require("../helpers/textExtractor");
 require("dotenv").config();
 
-
 AWS.config.update({
-    accessKeyId: process.env.AWS_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
-  });
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+});
 
 // Create an S3 instance
 const s3 = new AWS.S3();
@@ -18,12 +18,35 @@ async function handleFileUploads(req, res) {
     }
     const uploadedFile = req.files.uploadedFile;
     // console.log(uploadedFile);
+    const fileFormat = uploadedFile.name.split(".").pop().toLowerCase(); // Extracting file format.
 
-    // Upload the file to S3
+    // Determining content type based on file format.
+    let contentType;
+    switch (fileFormat) {
+      case "pdf":
+        contentType = "application/pdf";
+        break;
+      case "ppt":
+        contentType = "application/vnd.ms-powerpoint";
+        break;
+      case "doc":
+      case "docx":
+        contentType = "application/msword";
+        break;
+      default:
+        contentType = "application/octet-stream";
+    }
+
+    // Set ContentDisposition header to inline with filename
+    const contentDisposition = `inline; filename="${uploadedFile.name}"`;
+
+    // Upload the file to S3 with appropriate content type
     const params = {
       Bucket: process.env.BUCKET_NAME,
       Key: uploadedFile.name,
       Body: uploadedFile.data,
+      ContentType: contentType,
+      ContentDisposition: contentDisposition,
     };
 
     const s3UploadResponse = await s3.upload(params).promise();
@@ -35,13 +58,20 @@ async function handleFileUploads(req, res) {
         .json({ message: "Internal Server Error. S3 Location is undefined." });
     }
 
-     const newFile = new fileModel({
-        fileName: uploadedFile.name,
-        fileURL: s3UploadResponse.Location,
-        owner: req.body.userID,
-      });
-  
-      await newFile.save();
+    // Extract text from the uploaded file
+    const extractedText = await extractTextFromFile(
+      uploadedFile,
+      fileFormat
+    );
+
+    const newFile = new fileModel({
+      fileName: uploadedFile.name,
+      fileURL: s3UploadResponse.Location,
+      owner: req.body.userID,
+      extractedText: extractedText,
+    });
+
+    await newFile.save();
 
     res.status(200).json({ message: "File uploaded successfully." });
   } catch (error) {
