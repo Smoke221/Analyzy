@@ -1,6 +1,8 @@
 const express = require("express");
 const { connectionToMongo } = require("./configurations/mongoDB");
 const { userRouter } = require("./routes/userRoute");
+const { authenticate } = require("./middlewares/authenticate");
+const { analyzeFileRouter } = require("./routes/analyzeFile");
 
 require("dotenv").config();
 const app = express();
@@ -10,7 +12,15 @@ app.get("/", (req, res) => {
   res.send("Homepage");
 });
 
-app.use("/auth", userRouter)
+app.use("/auth", userRouter);
+
+app.use(authenticate);
+
+app.get("/s", (req, res) => {
+  res.send("Secured page.");
+});
+
+app.use(analyzeFileRouter)
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, async () => {
