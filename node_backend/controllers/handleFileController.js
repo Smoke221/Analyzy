@@ -17,10 +17,7 @@ async function handleFileUploads(req, res) {
       return res.status(400).json({ message: "No files were uploaded." });
     }
     const uploadedFile = req.files.uploadedFile;
-    // console.log(uploadedFile);
-    const fileFormat = uploadedFile.name.split(".").pop().toLowerCase(); // Extracting file format.
-
-    // Determining content type based on file format.
+    const fileFormat = uploadedFile.name.split(".").pop().toLowerCase();
     let contentType;
     switch (fileFormat) {
       case "pdf":

@@ -1,6 +1,6 @@
-const { Document, Packer } = require("docx");
-const { Presentation } = require("pptxgenjs");
 const pdfParse = require("pdf-parse");
+const { docxExtractor } = require("./docxExtractor");
+const fs = require("fs");
 
 async function detectFileType(fileFormat) {
   switch (fileFormat.toLowerCase()) {
@@ -16,35 +16,28 @@ async function detectFileType(fileFormat) {
   }
 }
 
-async function extractTextFromPdf(fileBuffer) {
-  const data = await pdfParse(fileBuffer);
+async function extractTextFromPdf(actualFile) {
+  const data = await pdfParse(actualFile);
 
   const extractedText = data.text;
-//   console.log(extractedText);
+  //   console.log(extractedText);
 
   return extractedText;
 }
 
-function extractTextFromDocx(fileBuffer) {
-  const doc = new Document();
-  doc.load(fileBuffer);
-  const extractedText = doc.getRawText();
-  return extractedText;
+async function extractTextFromDocx(actualFile) {
+  try {
+    const extractedText = docxExtractor(actualFile);
+    console.log(extractedText);
+  } catch (error) {
+    console.error("Error extracting text from docx:", error);
+    return "";
+  }
 }
 
-function extractTextFromPptx(fileBuffer) {
-  const prs = new Presentation();
-  prs.load(fileBuffer);
-  let text = "";
-  prs.slides.forEach((slide) => {
-    slide.getContent().forEach((content) => {
-      text += content.text + "\n";
-    });
-  });
-  return text;
-}
+function extractTextFromPptx(actualFile) {}
 
-async function extractTextFromFile(fileBuffer, fileFormat) {
+async function extractTextFromFile(actualFile, fileFormat) {
   try {
     // Detect file type
     const fileType = await detectFileType(fileFormat);
@@ -53,13 +46,13 @@ async function extractTextFromFile(fileBuffer, fileFormat) {
     let extractedText;
     switch (fileType) {
       case "application/pdf":
-        extractedText = extractTextFromPdf(fileBuffer);
+        extractedText = extractTextFromPdf(actualFile);
         break;
-      case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-        extractedText = extractTextFromDocx(fileBuffer);
+      case "application/msword":
+        extractedText = extractTextFromDocx(actualFile);
         break;
-      case "application/vnd.openxmlformats-officedocument.presentationml.presentation":
-        extractedText = extractTextFromPptx(fileBuffer);
+      case "application/vnd.ms-powerpoint":
+        extractedText = extractTextFromPptx(actualFile);
         break;
       default:
         extractedText = "Unsupported file format";
