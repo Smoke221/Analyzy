@@ -1,6 +1,8 @@
 const pdfParse = require("pdf-parse");
 const { docxExtractor } = require("./docxExtractor");
 const fs = require("fs");
+const path = require("path")
+const { Buffer } = require('node:buffer');
 
 async function detectFileType(fileFormat) {
   switch (fileFormat.toLowerCase()) {
@@ -27,8 +29,13 @@ async function extractTextFromPdf(actualFile) {
 
 async function extractTextFromDocx(actualFile) {
   try {
-    const extractedText = docxExtractor(actualFile);
+    const tempFileName = path.join(__dirname, 'temp-file.docx');
+    // await fs.promises.writeFile(tempFileName, actualFile);
+
+    const extractedText = await docxExtractor(actualFile);
     console.log(extractedText);
+
+    // return extractedText;
   } catch (error) {
     console.error("Error extracting text from docx:", error);
     return "";
@@ -48,12 +55,12 @@ async function extractTextFromFile(actualFile, fileFormat) {
       case "application/pdf":
         extractedText = extractTextFromPdf(actualFile);
         break;
-      case "application/msword":
-        extractedText = extractTextFromDocx(actualFile);
-        break;
-      case "application/vnd.ms-powerpoint":
-        extractedText = extractTextFromPptx(actualFile);
-        break;
+      // case "application/msword":
+      //   extractedText = extractTextFromDocx(actualFile);
+      //   break;
+      // case "application/vnd.ms-powerpoint":
+      //   extractedText = extractTextFromPptx(actualFile);
+      //   break;
       default:
         extractedText = "Unsupported file format";
     }
