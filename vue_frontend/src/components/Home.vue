@@ -1,265 +1,127 @@
 <template>
-  <div class="navbar">
-    <div class="nav-logo">
-      <a href="#">Logo</a>
-    </div>
-    <div class="nav-items">
-      <ul>
-        <li><a href="#"> Home </a></li>
-        <li><a href="#"> Services </a></li>
-        <li><a href="#"> About </a></li>
-        <li><a href="#"> Contact </a></li>
-        <li><a href="#"> Home </a></li>
-      </ul>
-    </div>
-    <div class="nav-button">
-      <div class="anim-layer"></div>
-      <a href="#">Sign Up</a>
-    </div>
-    <div id="hamburger-menu" @click="toggleMobileMenu">&#9776;</div>
-  </div>
+  <div>
+    <main>
+      <div class="intro">
+        <h2>Read your documents faster.</h2>
+        <p class="intro-text">
+          **Uncover hidden insights in your documents!** Our powerful analysis
+          engine, powered by the AI, will extract key information and provide
+          you with a clear understanding of your documents' content. Ask
+          follow-up questions to delve deeper and get the most out of your data.
+        </p>
 
-  <div id="mobile-menu" v-show="isMobileMenuOpen" style="display: none;">
-    <div class="mobile-nav-items">
-      <ul>
-        <li><a href="#"> Home </a></li>
-        <li><a href="#"> Services </a></li>
-        <li><a href="#"> About </a></li>
-        <li><a href="#"> Contact </a></li>
-        <li><a href="#"> Home </a></li>
-      </ul>
-    </div>
-    <div class="mobile-nav-button">
-      <div class="anim-layer"></div>
-      <a href="#">Sign Up</a>
-    </div>
-    <div id="hamburger-cross" @click="toggleMobileMenu">&#10006;</div>
+        <button class="analyze-button" @click="$router.push('/analyze')">Analyze Files</button>
+
+      </div>
+
+      <div class="benefits">
+        <h2>Benefits</h2>
+        <ul>
+          <li>
+            <h4>AI-Powered</h4>
+            <p>Get answers to your questions within seconds.</p>
+          </li>
+          <li>
+            <h4>Save Time</h4>
+            <p>Save hours instead of reading PDFs manually yourself.</p>
+          </li>
+          <li>
+            <h4>Secure</h4>
+            <p>Your files are secure and can be deleted anytime.</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="why-analyzy">
+        <div>
+          <p>WHY ANALYZY</p>
+          <h3 class="benefit-title">
+            Analyzy <span class="highlight">saves 95%</span> of your time spent
+            reading docs.
+          </h3>
+          <p>
+            You have too many files to read as is. Stop wasting time. Instead,
+            have the Analyzy AI read your files and answer your questions. Get
+            ready to save some serious time and impress your boss!
+          </p>
+          <button class="get-started-button">GET STARTED</button>
+        </div>
+        <div>
+          <img
+            alt="Analyzy in action"
+            src="./assets/vue.svg"
+            class="analyzy-image"
+          />
+        </div>
+      </div>
+    </main>
   </div>
 </template>
+
 <script>
 export default {
-  name: 'MobileMenu',
-  data() {
-    return {
-      isMobileMenuOpen: false,
-    }
-  },
-  methods: {
-    toggleMobileMenu() {
-      this.isMobileMenuOpen = !this.isMobileMenuOpen;
-      if (window.innerWidth > 770) {
-        this.isMobileMenuOpen = false; // Hide menu on resize
-      }
-    }
-  }
+  components: {},
 };
 </script>
+
 <style scoped>
-.navbar {
-  position: relative;
+.intro {
+  text-align: center;
+  padding: 2rem;
+}
+
+.intro-text {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.analyze-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.analyze-button:hover {
+  background-color: #0069d9;
+}
+
+.benefits {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.benefits h2 {
+  margin-bottom: 1rem;
+}
+
+.benefits ul {
+  list-style: none;
+  padding: 0;
   display: flex;
-  padding: 10px;
-  background-color: #141214;
-  justify-content: space-around;
   align-items: center;
-  box-shadow: 7px 5px 15px -4px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 7px 5px 15px -4px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 7px 5px 15px -4px rgba(0, 0, 0, 0.75);
+  justify-content: space-around;
 }
 
-.nav-items > ul > li {
-  position: relative;
-  display: inline;
-  list-style: none;
-  margin: 10px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.nav-items > ul > li > a {
-  color: white;
-  text-decoration: none;
-}
-
-.nav-items > ul > li::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 0.17rem;
-  background-color: #c52726;
-  left: 0;
-  bottom: 0;
-  transform-origin: 0% 100%;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.nav-items > ul > li:hover::after {
-  transform: scaleX(1);
-}
-
-.nav-logo a,
-.nav-button a {
-  color: white;
-  list-style: none;
-  text-decoration: none;
+.benefits li {
+  margin-bottom: 1rem;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.nav-logo {
-  font-size: 32px;
+.benefits li p {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+  color: #007bff;
 }
-
-.nav-button {
-  background-color: #c52726;
-  border-radius: 50px;
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.anim-layer {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 0;
-  height: 100%;
-  background-color: white;
-  transition: width 0.3s ease, left 0.3s ease;
-}
-
-.nav-button:hover .anim-layer {
-  width: 100%;
-  left: 0;
-}
-
-.nav-button:hover a {
-  color: #141214;
-}
-
-.nav-button a {
-  display: block;
-  padding: 10px 20px;
-  color: white;
-  text-decoration: none;
-  position: relative;
-  z-index: 1;
-}
-
-#hamburger-menu,
-#mobile-menu {
-  display: none;
-}
-
-@media only screen and (max-width: 770px) {
-  #mobile-menu {
-    background-color: #c52726;
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    transition: transform 0.3s ease;
-    transform: translateX(-100%);
-  }
-
-  .mobile-nav-items > ul {
-    padding: 0px;
-  }
-
-  .mobile-nav-items > ul > li {
-    text-align: center;
-    position: relative;
-    list-style: none;
-    margin: 10px;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-
-  .mobile-nav-items > ul > li > a {
-    color: white;
-    text-decoration: none;
-  }
-
-  .mobile-nav-items > ul > li::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 0.17rem;
-    background-color: white;
-    left: 0;
-    bottom: 0;
-    transform-origin: 0% 100%;
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-  }
-
-  .mobile-nav-items > ul > li:hover::after {
-    transform: scaleX(1);
-  }
-
-  .mobile-nav-button {
-    background-color: #141214;
-    border-radius: 50px;
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    cursor: pointer;
-  }
-
-  .mobile-nav-button .anim-layer {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 0;
-    height: 100%;
-    background-color: white;
-    transition: width 0.3s ease, left 0.3s ease;
-  }
-
-  .mobile-nav-button:hover .anim-layer {
-    width: 100%;
-    left: 0;
-  }
-
-  .mobile-nav-button:hover a {
-    color: #141214;
-  }
-
-  .mobile-nav-button a {
-    display: block;
-    padding: 10px 20px;
-    color: white;
-    text-decoration: none;
-    position: relative;
-    z-index: 1;
-  }
-
-  .nav-items > ul,
-  .nav-button {
-    display: none;
-  }
-
-  #hamburger-cross {
-    display: block;
-    color: white;
-    cursor: pointer;
-    font-size: 40px;
-    position: absolute;
-    top: 20px;
-    right: 26px;
-  }
-
-  #hamburger-menu {
-    display: block;
-    color: white;
-    cursor: pointer;
-    font-size: 24px;
-  }
+.why-analyzy {
+  width: 80%;
+  display: flex;
+  align-items: centre;
+  justify-content: space-around;
 }
 </style>
