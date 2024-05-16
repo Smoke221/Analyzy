@@ -5,8 +5,8 @@
     </div>
     <div class="nav-items">
       <ul>
-        <li><a href="#"> Home </a></li>
-        <li><a href="#"> Analyze </a></li>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/analyzy">Analyze</router-link></li>
         <li><a href="#"> About </a></li>
         <li><a href="#"> Contact </a></li>
       </ul>
@@ -21,8 +21,8 @@
   <div id="mobile-menu" v-show="isMobileMenuOpen" style="display: none">
     <div class="mobile-nav-items">
       <ul>
-        <li><a href="#"> Home </a></li>
-        <li><a href="#"> Services </a></li>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/analyzy">Analyze</router-link></li>
         <li><a href="#"> About </a></li>
         <li><a href="#"> Contact </a></li>
         <li><a href="#"> Home </a></li>
