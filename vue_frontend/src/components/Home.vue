@@ -10,7 +10,7 @@
           follow-up questions to delve deeper and get the most out of your data.
         </p>
 
-        <button class="analyze-button" @click="$router.push('/analyze')">Analyze Files</button>
+        <button class="analyze-button" @click="$router.push('/analyzy')">Analyze Files</button>
 
       </div>
 
@@ -44,7 +44,7 @@
             have the Analyzy AI read your files and answer your questions. Get
             ready to save some serious time and impress your boss!
           </p>
-          <button class="get-started-button">GET STARTED</button>
+          <button class="get-started-button" @click="$router.push('/analyzy')">GET STARTED</button>
         </div>
         <div>
           <img

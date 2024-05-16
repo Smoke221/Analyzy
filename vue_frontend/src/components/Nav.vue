@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <div class="nav-logo">
-      <a href="#">Analyzy</a>
+      <router-link to="/">Analyzy</router-link>
     </div>
     <div class="nav-items">
       <ul>
@@ -67,7 +67,7 @@ export default {
   -moz-box-shadow: 7px 5px 15px -4px rgba(0, 0, 0, 0.75);
 }
 
-.nav-items > ul > li {
+.nav-items>ul>li {
   position: relative;
   display: inline;
   list-style: none;
@@ -76,17 +76,17 @@ export default {
   cursor: pointer;
 }
 
-.nav-items > ul > li > a {
+.nav-items>ul>li>a {
   color: white;
   text-decoration: none;
 }
 
-.nav-items > ul > li::after {
+.nav-items>ul>li::after {
   content: "";
   position: absolute;
   width: 100%;
   height: 0.17rem;
-  background-color: #c52726;
+  background-color: #55ACEE;
   left: 0;
   bottom: 0;
   transform-origin: 0% 100%;
@@ -94,7 +94,7 @@ export default {
   transition: transform 0.3s ease;
 }
 
-.nav-items > ul > li:hover::after {
+.nav-items>ul>li:hover::after {
   transform: scaleX(1);
 }
 
@@ -111,7 +111,7 @@ export default {
 }
 
 .nav-button {
-  background-color: #c52726;
+  background-color: #55ACEE;
   border-radius: 50px;
   position: relative;
   display: inline-block;
@@ -154,7 +154,7 @@ export default {
 
 @media only screen and (max-width: 770px) {
   #mobile-menu {
-    background-color: #c52726;
+    background-color: #55ACEE;
     width: 100%;
     height: 100vh;
     position: fixed;
@@ -168,11 +168,11 @@ export default {
     transform: translateX(-100%);
   }
 
-  .mobile-nav-items > ul {
+  .mobile-nav-items>ul {
     padding: 0px;
   }
 
-  .mobile-nav-items > ul > li {
+  .mobile-nav-items>ul>li {
     text-align: center;
     position: relative;
     list-style: none;
@@ -181,12 +181,12 @@ export default {
     cursor: pointer;
   }
 
-  .mobile-nav-items > ul > li > a {
+  .mobile-nav-items>ul>li>a {
     color: white;
     text-decoration: none;
   }
 
-  .mobile-nav-items > ul > li::after {
+  .mobile-nav-items>ul>li::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -199,7 +199,7 @@ export default {
     transition: transform 0.3s ease;
   }
 
-  .mobile-nav-items > ul > li:hover::after {
+  .mobile-nav-items>ul>li:hover::after {
     transform: scaleX(1);
   }
 
@@ -240,7 +240,7 @@ export default {
     z-index: 1;
   }
 
-  .nav-items > ul,
+  .nav-items>ul,
   .nav-button {
     display: none;
   }
