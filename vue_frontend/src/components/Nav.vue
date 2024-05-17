@@ -13,7 +13,7 @@
     </div>
     <div class="nav-button">
       <div class="anim-layer"></div>
-      <a href="#">Sign Up</a>
+      <a><router-link to="/auth">Signup</router-link></a>
     </div>
     <div id="hamburger-menu" @click="toggleMobileMenu">&#9776;</div>
   </div>
@@ -25,12 +25,11 @@
         <li><router-link to="/analyzy">Analyze</router-link></li>
         <li><a href="#"> About </a></li>
         <li><a href="#"> Contact </a></li>
-        <li><a href="#"> Home </a></li>
       </ul>
     </div>
     <div class="mobile-nav-button">
       <div class="anim-layer"></div>
-      <a href="#">Sign Up</a>
+      <a><router-link to="/auth">Signup</router-link></a>
     </div>
     <div id="hamburger-cross" @click="toggleMobileMenu">&#10006;</div>
   </div>
