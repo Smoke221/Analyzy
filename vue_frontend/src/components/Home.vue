@@ -18,14 +18,17 @@
         <h2>Benefits</h2>
         <ul>
           <li>
+            <img src="../assets/artificial-intelligence-ai-icon.svg" alt="">
             <h4>AI-Powered</h4>
             <p>Get answers to your questions within seconds.</p>
           </li>
           <li>
+            <img src="../assets/time-management-icon.svg" alt="">
             <h4>Save Time</h4>
             <p>Save hours instead of reading PDFs manually yourself.</p>
           </li>
           <li>
+            <img src="../assets/folder-lock-icon.svg" alt="">
             <h4>Secure</h4>
             <p>Your files are secure and can be deleted anytime.</p>
           </li>
@@ -91,28 +94,48 @@ export default {
 
 .benefits h2 {
   margin-bottom: 1rem;
+  font-size: 3rem;
+  color: #333;
 }
 
 .benefits ul {
   list-style: none;
   padding: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
 }
 
 .benefits li {
-  margin-bottom: 1rem;
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  width: 30%;
+  height: 250px;
+}
+
+.benefits li img {
+  max-width: 100px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.benefits li h4 {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  color: #333;
 }
 
 .benefits li p {
-  margin-right: 1rem;
-  font-size: 1.2rem;
+  margin: 0;
+  font-size: 1.1rem;
   color: #007bff;
+  text-align: center;
 }
 
 .why-analyzy {

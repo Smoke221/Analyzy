@@ -9,12 +9,12 @@
                 <h2>Login</h2>
                 <input v-model="email" type="email" placeholder="Email" required>
                 <input v-model="password" type="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-                <a href="">Forgot Password?</a>
                 <div class="checkbox-container">
                     <input type="checkbox" id="remember-me">
                     <label for="remember-me">Remember me</label>
                 </div>
+                <button type="submit">Login</button>
+                <a href="">Forgot Password?</a>
                 <button type="button" @click="toggleForm">I'm new</button>
             </form>
             <form v-else @submit.prevent="handleSignup" class="form">
@@ -26,6 +26,9 @@
                 <button type="button" @click="toggleForm">I have an account</button>
             </form>
         </div>
+    </div>
+    <div class="google-login">
+        <button @click="handleGoogleLogin">Login with Google</button>
     </div>
 </template>
 
@@ -51,6 +54,10 @@ export default {
             // Handle signup logic
             console.log('Signing up with', this.username, this.email, this.password);
         },
+        handleGoogleLogin() {
+            // Handle Google login logic
+            console.log('Logging in with Google');
+        },
     },
 };
 </script>
@@ -61,16 +68,13 @@ export default {
     justify-content: center;
     align-items: stretch;
     background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
     width: 70%;
     max-width: 900px;
     overflow: hidden;
     padding: 30px;
-    position: absolute;
-    top: 15%;
-    left: 25%;
     flex-wrap: wrap;
+    margin-top: 10vw;
 }
 
 .info {
@@ -85,7 +89,7 @@ export default {
 }
 
 .info h2 {
-    font-size: 70px;
+    font-size: 4vw;
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 0;
@@ -97,11 +101,12 @@ export default {
 }
 
 .info p {
-    font-size: 15px;
+    font-size: 1vw;
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 2px;
     white-space: 4px;
+    margin-top: 1.5vw;
 }
 
 .form-container {
@@ -145,7 +150,36 @@ export default {
 }
 
 .checkbox-container {
-    margin-top: 2.5px;
-    margin-bottom: 2.5px;
+    margin-bottom: 5px;
+}
+
+.checkbox-container input {
+    margin-right: 5px;
+}
+
+.google-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.google-login button {
+    padding: 12px 16px 12px 42px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+    color: #757575;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: 15px 15px;
+}
+
+.google-login button:hover {
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
 }
 </style>
