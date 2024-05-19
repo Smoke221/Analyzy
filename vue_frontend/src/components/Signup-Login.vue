@@ -10,6 +10,11 @@
                 <input v-model="email" type="email" placeholder="Email" required>
                 <input v-model="password" type="password" placeholder="Password" required>
                 <button type="submit">Login</button>
+                <a href="">Forgot Password?</a>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Remember me</label>
+                </div>
                 <button type="button" @click="toggleForm">I'm new</button>
             </form>
             <form v-else @submit.prevent="handleSignup" class="form">
@@ -137,5 +142,10 @@ export default {
 
 .form button:hover {
     background: #3498db;
+}
+
+.checkbox-container {
+    margin-top: 2.5px;
+    margin-bottom: 2.5px;
 }
 </style>
