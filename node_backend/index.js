@@ -3,6 +3,7 @@ const { connectionToMongo } = require("./configurations/mongoDB");
 const { userRouter } = require("./routes/userRoute");
 const { authenticate } = require("./middlewares/authenticate");
 const { analyzeFileRouter } = require("./routes/analyzeFile");
+const { googleRouter } = require("./routes/googleOauth");
 
 require("dotenv").config();
 const app = express();
@@ -13,6 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", userRouter);
+app.use("/auth/google", googleRouter)
 
 app.use(authenticate);
 
