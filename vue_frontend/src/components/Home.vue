@@ -33,25 +33,21 @@
       </div>
 
       <div class="why-analyzy">
-        <div>
-          <p>WHY ANALYZY</p>
+        <div class="content">
+          <p class="why-title">WHY ANALYZY</p>
           <h3 class="benefit-title">
             Analyzy <span class="highlight">saves 95%</span> of your time spent
             reading docs.
           </h3>
-          <p>
+          <p class="description">
             You have too many files to read as is. Stop wasting time. Instead,
             have the Analyzy AI read your files and answer your questions. Get
             ready to save some serious time and impress your boss!
           </p>
           <button class="get-started-button" @click="$router.push('/analyzy')">GET STARTED</button>
         </div>
-        <div>
-          <img
-            alt="Analyzy in action"
-            src="./assets/vue.svg"
-            class="analyzy-image"
-          />
+        <div class="image-container">
+          <img alt="Analyzy in action" src="../assets/Analyzy-Execution.png" class="analyzy-image" />
         </div>
       </div>
     </main>
@@ -118,10 +114,69 @@ export default {
   font-size: 1.2rem;
   color: #007bff;
 }
+
 .why-analyzy {
-  width: 80%;
   display: flex;
-  align-items: centre;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-around;
+  flex-wrap: wrap;
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  max-width: 500px;
+  margin-right: 20px;
+}
+
+.why-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.benefit-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.benefit-title .highlight {
+  color: #e74c3c;
+}
+
+.description {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.get-started-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.get-started-button:hover {
+  background-color: #2980b9;
+}
+
+.image-container {
+  max-width: 500px;
+}
+
+.analyzy-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
 </style>
