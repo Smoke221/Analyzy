@@ -57,7 +57,13 @@ async function login(req, res) {
       expiresIn: "1h",
     });
 
-    res.json({ message: "Login successful.", token });
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'Strict',
+    });
+
+    res.json({ message: "Login successful." });
   } catch (err) {
     console.error("Error logging in:", err);
     res.status(500).json({ message: "Internal server error" });
