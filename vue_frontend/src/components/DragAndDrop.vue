@@ -34,6 +34,7 @@
 
 <script>
 import { ref } from 'vue';
+import axios from 'axios';
 
 export default {
   setup() {
@@ -79,7 +80,7 @@ export default {
       input.click();
     };
 
-    const uploadFiles = () => {
+    const uploadFiles = async () => {
       const checkedFiles = files.value.filter((file) => document.getElementById(`checkbox-${file.name}`).checked);
 
       // Disaplying message about none files selected.
@@ -96,7 +97,24 @@ export default {
 
         return;
       }
-      console.log('Uploading checked files:', checkedFiles);
+
+      try {
+        const formData = new FormData()
+
+        checkedFiles.forEach(file => {
+          formData.append("uploadedFile", file)
+        })
+
+        const response = await axios.post("http://localhost:3000/upload", formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        console.log(response.data);
+
+      } catch (err) {
+        console.error('Error uploading files:', err);
+      }
 
       for (const file of checkedFiles) {
         //If the file is uploaded delete it from the selected files.
