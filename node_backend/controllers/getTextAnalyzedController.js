@@ -3,7 +3,11 @@ const { fileModel } = require("../models/file");
 
 async function analyzedText(req, res) {
   try {
-    const isFileExists = await fileModel.findOne({ fileName: "sample.pdf" });
+    const { requestedFileForAnalyze } = req.body;
+
+    const isFileExists = await fileModel.findOne({
+      fileName: requestedFileForAnalyze,
+    });
     if (!isFileExists) {
       res.status(400).json({ message: "File does not exist." });
     }

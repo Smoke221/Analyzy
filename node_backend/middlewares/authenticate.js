@@ -3,7 +3,7 @@ require("dotenv").config();
 
 // Middleware to authenticate incoming requests using JWT.
 const authenticate = (req, res, next) => {
-  const token = req.headers.authorization;
+  const token = req.header('Authorization')?.replace('Bearer ', '');
 
   if (token) {
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
