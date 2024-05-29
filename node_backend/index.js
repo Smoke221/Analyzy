@@ -4,10 +4,12 @@ const { userRouter } = require("./routes/userRoute");
 const { authenticate } = require("./middlewares/authenticate");
 const { analyzeFileRouter } = require("./routes/analyzeFile");
 const { googleRouter } = require("./routes/googleOauth");
+const cors = require("cors")
 
 require("dotenv").config();
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 app.get("/", (req, res) => {
   res.send("Homepage");
