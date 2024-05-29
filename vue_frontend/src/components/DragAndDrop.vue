@@ -36,6 +36,9 @@
 import { ref } from 'vue';
 import axios from 'axios';
 
+// Set up Axios to send cookies with requests
+axios.defaults.withCredentials = true;
+
 export default {
   setup() {
     const files = ref([]);

@@ -30,9 +30,14 @@
     <div class="google-login">
         <button @click="handleGoogleLogin">Login with Google</button>
     </div>
+        <MessageCard ref="messageCard" />
+
 </template>
 
 <script>
+import axios from 'axios';
+import MessageCard from '../components/MessageCard.vue'
+
 export default {
     data() {
         return {
@@ -42,13 +47,31 @@ export default {
             password: '',
         };
     },
+    components: {
+        MessageCard,
+    },
     methods: {
+        showMessage(message, destination) {
+            this.$refs.messageCard.showMessage(message, destination);
+        },
         toggleForm() {
             this.isLoginForm = !this.isLoginForm;
         },
-        handleLogin() {
-            // Handle login logic
-            console.log('Logging in with', this.email, this.password);
+        async handleLogin() {
+            try {
+                const payload = { email: this.email, password: this.password }
+                const response = await axios.post("http://localhost:3000/auth/login", payload, {
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    withCredentials: true,
+                })
+                console.log(response.data)
+                this.showMessage("Login successful!")
+            }
+            catch (err) {
+                console.error('Error logging in:', err)
+            }
         },
         handleSignup() {
             // Handle signup logic
