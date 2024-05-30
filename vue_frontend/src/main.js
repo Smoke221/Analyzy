@@ -1,8 +1,9 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "./components/Home.vue";
-import Analyzy from "./components/Analyzy.vue";
+import Container from "./components/Container.vue";
 import SignupLogin from "./components/Signup-Login.vue";
+import Analyze from "./components/Analyze.vue";
 import "./style.css";
 import App from "./App.vue";
 
@@ -14,8 +15,14 @@ const routes = [
   },
   {
     path: "/analyzy",
-    name: "Analyzy",
-    component: Analyzy,
+    name: "Container",
+    component: Container,
+  },
+  {
+    path: "/getAnalyzed",
+    name: "Analyze",
+    component: Analyze,
+    meta: { hideComponent: true },
   },
   {
     path: "/auth",
