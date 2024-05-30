@@ -2,7 +2,7 @@ const { fileModel } = require("../models/file");
 
 async function getFiles(req, res) {
   try {
-    const userId = req.body.userID;
+    const userId = req.userID;
 
     const files = await fileModel.find({ owner: userId });
 

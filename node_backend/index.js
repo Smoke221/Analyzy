@@ -5,10 +5,12 @@ const { authenticate } = require("./middlewares/authenticate");
 const { analyzeFileRouter } = require("./routes/analyzeFile");
 const { googleRouter } = require("./routes/googleOauth");
 const cors = require("cors")
+var cookieParser = require('cookie-parser')
 
 require("dotenv").config();
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 const corsOptions = {
   origin: 'http://localhost:5173',
