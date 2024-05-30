@@ -11,6 +11,6 @@ analyzeFileRouter.post("/upload", handleFileUploads);
 
 analyzeFileRouter.get("/files", getFiles)
 
-analyzeFileRouter.get("/analyz", analyzedText);
+analyzeFileRouter.get("/analyz/:id", analyzedText);
 
 module.exports = { analyzeFileRouter };
