@@ -19,7 +19,7 @@ const routes = [
     component: Container,
   },
   {
-    path: "/getAnalyzed",
+    path: "/getAnalyzed/:fileId",
     name: "Analyze",
     component: Analyze,
     meta: { hideComponent: true },

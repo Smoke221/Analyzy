@@ -43,6 +43,7 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import deleteFile from '../mixins/deleteFile.js'
+import { useRoute, useRouter } from 'vue-router';
 
 // Set up Axios to send cookies with requests
 axios.defaults.withCredentials = true;
@@ -52,6 +53,7 @@ export default {
   setup() {
     const files = ref([]);
     const uploadedFiles = ref([]);
+    const router = useRouter(); // Get the router instance
 
     onMounted(async () => {
       try {
@@ -160,6 +162,10 @@ export default {
       return `${newSize.toFixed(2)}${units[i]}`;
     };
 
+    const analyzeFile = (fileId) => {
+      router.push({ name: 'Analyze', params: { fileId } });
+    }
+
     return {
       files,
       handleDrop,
@@ -168,6 +174,7 @@ export default {
       formatFileSize,
       uploadFiles,
       uploadedFiles,
+      analyzeFile,
     };
   },
 };
