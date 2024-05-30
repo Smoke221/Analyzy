@@ -42,11 +42,13 @@
 <script>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import deleteFile from '../mixins/deleteFile.js'
 
 // Set up Axios to send cookies with requests
 axios.defaults.withCredentials = true;
 
 export default {
+  mixins: [deleteFile],
   setup() {
     const files = ref([]);
     const uploadedFiles = ref([]);
