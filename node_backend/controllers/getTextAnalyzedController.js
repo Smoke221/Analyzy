@@ -14,7 +14,7 @@ async function analyzedText(req, res) {
     const extractedText = isFileExists.extractedText;
     const result = await analyzeFileData(extractedText);
 
-    res.status(200).json({ message: "File has been analyzed.", result });
+    res.status(200).json({ message: "File has been analyzed.", result, isFileExists });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Catch Error: Internal Server Error." });
