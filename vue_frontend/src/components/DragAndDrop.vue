@@ -1,9 +1,7 @@
 <template>
   <div class="file-upload-container">
     <div @dragover.prevent @drop.prevent="handleDrop" class="drop-zone">
-      <span class="material-symbols-outlined">
-        upload
-      </span>
+      <span class="material-symbols-outlined">upload</span>
       <h2>Drop your files here</h2>
       <p>or</p>
       <h3><span @click="openFileDialog" class="selectFile">Browse</span> files</h3>
@@ -15,25 +13,34 @@
           <li v-for="file in files" :key="file.name">
             <input type="checkbox" :id="`checkbox-${file.name}`" />
             <label :for="`checkbox-${file.name}`">{{ file.name }} ({{ formatFileSize(file.size) }})</label>
-            <span @click="removeFile(file)" class="material-symbols-outlined remove-button">
-              delete
-            </span>
+            <span @click="removeFile(file)" class="material-symbols-outlined remove-button">delete</span>
           </li>
           <li class="upload-button-container">
             <button @click="uploadFiles">Upload</button>
           </li>
         </ul>
       </div>
-      <div v-else class="empty-message-container">
-        <p>Start analyzing by selecting files.</p>
-        <p>Drag and drop files above.</p>
+      <div v-if="uploadedFiles.length > 0" class="uploaded-files-container">
+        <h2>Uploaded Files</h2>
+        <ul>
+          <li v-for="file in uploadedFiles" :key="file._id">
+            <span>{{ file.fileName }}</span>
+            <div id="buttons-container">
+              <button @click="analyzeFile(file._id)">Analyze</button>
+              <button class="material-symbols-outlined" @click="deleteFile(file._id)">delete</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div v-else-if="uploadedFiles.length === 0">
+        <h4>No files uploaded yet.</h4>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
 // Set up Axios to send cookies with requests
@@ -42,6 +49,20 @@ axios.defaults.withCredentials = true;
 export default {
   setup() {
     const files = ref([]);
+    const uploadedFiles = ref([]);
+
+    onMounted(async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/files");
+        if (response.status === 200) {
+          uploadedFiles.value = response.data.files;
+        } else {
+          console.error('Error fetching files:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching files:', error);
+      }
+    });
 
     const handleDrop = (event) => {
       if (event.dataTransfer.files) {
@@ -79,21 +100,18 @@ export default {
         }
       });
 
-      //triggering the file section dialog.
       input.click();
     };
 
     const uploadFiles = async () => {
       const checkedFiles = files.value.filter((file) => document.getElementById(`checkbox-${file.name}`).checked);
 
-      // Disaplying message about none files selected.
       if (checkedFiles.length === 0) {
         const messageContainer = document.createElement('div');
         messageContainer.classList.add('no-files-message');
         messageContainer.textContent = 'No files selected for upload.';
         document.querySelector('.file-container').appendChild(messageContainer);
 
-        // Removing the message after 2 seconds.
         setTimeout(() => {
           messageContainer.remove();
         }, 2000);
@@ -102,31 +120,29 @@ export default {
       }
 
       try {
-        const formData = new FormData()
+        const formData = new FormData();
+        checkedFiles.forEach((file) => {
+          formData.append('uploadedFile', file);
+        });
 
-        checkedFiles.forEach(file => {
-          formData.append("uploadedFile", file)
-        })
-
-        const response = await axios.post("http://localhost:3000/upload", formData, {
+        const response = await axios.post('http://localhost:3000/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
-        })
-        console.log(response.data);
+        });
 
+        console.log(response.data);
+        uploadedFiles.value = [...uploadedFiles.value, ...response.data.uploadedFiles];
       } catch (err) {
         console.error('Error uploading files:', err);
       }
 
       for (const file of checkedFiles) {
-        //If the file is uploaded delete it from the selected files.
         const index = files.value.findIndex((f) => f === file);
         if (index !== -1) {
           files.value.splice(index, 1);
         }
       }
-
     };
 
     const formatFileSize = (fileSize) => {
@@ -142,7 +158,15 @@ export default {
       return `${newSize.toFixed(2)}${units[i]}`;
     };
 
-    return { files, handleDrop, removeFile, openFileDialog, formatFileSize, uploadFiles };
+    return {
+      files,
+      handleDrop,
+      removeFile,
+      openFileDialog,
+      formatFileSize,
+      uploadFiles,
+      uploadedFiles,
+    };
   },
 };
 </script>
@@ -204,23 +228,56 @@ export default {
   margin: auto;
 }
 
-.empty-message-container {
-  background-color: #f1f1f1;
-  border: 1px solid #ccc;
+.uploaded-files-container {
+  margin-top: 20px;
+}
+
+.uploaded-files-container h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.uploaded-files-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.uploaded-files-container li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.uploaded-files-container li:last-child {
+  border-bottom: none;
+}
+
+.uploaded-files-container li div :first-child {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
   border-radius: 5px;
-  padding: 15px;
-  text-align: center;
-  max-width: 400px;
-  margin: 20px auto;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
-.empty-message-container p {
-  margin: 10px 0;
-  font-size: 16px;
-  color: #333;
+.uploaded-files-container li div :last-child {
+  background-color: #f73c3c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
-.empty-message-container p:first-child {
-  font-weight: bold;
+.uploaded-files-container li div :first-child:hover {
+  background-color: #0056b3;
+}
+
+#buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
 }
 </style>
