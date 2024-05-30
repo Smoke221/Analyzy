@@ -1,12 +1,7 @@
-const AWS = require("aws-sdk");
+const { AWS } = require("../configurations/aws");
 const { fileModel } = require("../models/file");
 const { extractTextFromFile } = require("../helpers/textExtractor");
 require("dotenv").config();
-
-AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_SECRET_KEY,
-});
 
 // Create an S3 instance
 const s3 = new AWS.S3();
@@ -18,7 +13,9 @@ async function handleFileUploads(req, res) {
     }
 
     const uploadedFiles = req.files.uploadedFile;
-    const filesArray = Array.isArray(uploadedFiles) ? uploadedFiles : [uploadedFiles];
+    const filesArray = Array.isArray(uploadedFiles)
+      ? uploadedFiles
+      : [uploadedFiles];
     const fileUploadPromises = filesArray.map(async (uploadedFile) => {
       const fileFormat = uploadedFile.name.split(".").pop().toLowerCase();
       let contentType;
@@ -57,12 +54,15 @@ async function handleFileUploads(req, res) {
       }
 
       // Extract text from the uploaded file
-      const extractedText = await extractTextFromFile(uploadedFile.data, fileFormat);
+      const extractedText = await extractTextFromFile(
+        uploadedFile.data,
+        fileFormat
+      );
 
       const newFile = new fileModel({
         fileName: uploadedFile.name,
         fileURL: s3UploadResponse.Location,
-        owner: req.body.userID,
+        owner: req.userID,
         extractedText: extractedText,
       });
 
