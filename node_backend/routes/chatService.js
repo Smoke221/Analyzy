@@ -1,8 +1,7 @@
 const express = require("express");
-const { startChat, askGemini } = require("../controllers/askGeminiController");
+const { askGemini } = require("../controllers/askGeminiController");
 const chatRouter = express.Router();
 
-chatRouter.post("/:id", startChat);
-chatRouter.post("/", askGemini);
+chatRouter.post("/:id", askGemini);
 
 module.exports = { chatRouter };
