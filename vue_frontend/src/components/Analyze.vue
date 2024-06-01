@@ -26,21 +26,22 @@ export default {
 
 <style scoped>
 .container {
+    border: 1px solid red;
     display: flex;
-    justify-content: space-between;
-    height: 100vh;
+    justify-content: space-around;
+    gap: 1vw;
+    height: auto;
+    flex-wrap: wrap;
+    padding: 10px;
 }
 
 .left-container {
+    border: 1px solid green;
     flex: 1;
+    padding: 5px;
 }
 
 .right-container {
     flex: 2;
-}
-
-.right-container iframe {
-    height: 100%;
-    width: 100%;
 }
 </style>

@@ -5,11 +5,13 @@
     </div>
 </template>
 <script>
+import { store } from '../../vuex/store.js';
+
 export default {
-    props: {
-        fileURL: {
-            type: String,
-            required: true
+    computed: {
+        fileURL() {
+            //Get fileURL from Vuex store state.
+            return store.state.fileURL;
         }
     }
 }
