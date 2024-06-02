@@ -1,14 +1,15 @@
 <template>
     <div class="container">
-        <div class="left-container">
-            <fileSummary />
-            <AIChat />
-        </div>
-        <div class="right-container">
-            <displayFile />
-        </div>
+      <div class="left-container">
+        <fileSummary :style="{ maxHeight: '350px', overflowY: 'auto' }" />
+        <AIChat :style="{ minHeight: '300px', overflowY: 'auto' }" />
+      </div>
+      <div class="right-container">
+        <displayFile />
+      </div>
     </div>
-</template>
+  </template>
+  
 
 <script>
 import displayFile from "./sectionsOfAnalyzePage/DisplayFile.vue";
