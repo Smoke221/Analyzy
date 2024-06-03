@@ -27,7 +27,6 @@ export default {
 
 <style scoped>
 .container {
-    border: 1px solid red;
     display: flex;
     justify-content: space-around;
     gap: 1vw;
@@ -37,7 +36,6 @@ export default {
 }
 
 .left-container {
-    border: 1px solid green;
     flex: 1;
     padding: 5px;
 }

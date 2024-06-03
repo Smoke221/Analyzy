@@ -1,7 +1,9 @@
 <template>
-    <div>
-        <h4>{{ fileName }}</h4>
-        <p>{{ analyzedText }}</p>
+    <div class="container">
+        <div  v-if="analyzedText" class="analysis-report">
+            <div v-html="analyzedText"></div>
+        </div>
+        <p v-else>Loading analysis...</p>
     </div>
 </template>
 
@@ -31,7 +33,7 @@ export default {
                     const data = response.data;
                     this.fileName = data.isFileExists.fileName;
                     this.fileURL = data.isFileExists.fileURL;
-                    this.analyzedText = data.result;
+                    this.analyzedText = data.result.trim()
 
                     //Storing variables in vuex store to access from other components.
                     store.commit('setFileURL', this.fileURL);
@@ -46,4 +48,9 @@ export default {
     },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.container {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 5px;
+}
+</style>
