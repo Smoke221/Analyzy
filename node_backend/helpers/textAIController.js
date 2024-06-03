@@ -30,31 +30,56 @@ async function askAboutFile(extractedText, userMessage) {
 
 function generateAnalysisPrompt(extractedText) {
   return `
-  Imagine you're tasked with analyzing a document for a comprehensive understanding. Below is the text you'll be analyzing. Your goal is to provide a thorough analysis covering various aspects. Here's what we need:
+  Imagine you're tasked with analyzing a document for a comprehensive understanding. Below is the text you'll be analyzing. Your goal is to provide a well-structured analysis report, formatted for easy readability. Here's what we need:
 
-  Summarization: Summarize the main points and arguments presented in the document.
-  
-  Topic Identification: Identify the primary topic or theme of the document. What is it mainly about?
-  
-  Sentiment Analysis: Analyze the overall sentiment conveyed in the document (positive, negative, neutral). Offer insights on the tone and any emotional nuances.
-  
-  Key Findings: List the most significant findings or insights extracted from the document. Focus on the top two discoveries.
-  
-  Recommendations: Based on the document's content, suggest any recommendations or actions that should be considered.
-  
-  Critical Analysis: Provide a critical assessment of the document, highlighting its strengths, weaknesses, and areas for improvement.
-  
-  Language and Style Evaluation: Evaluate the language and writing style employed in the document. Comment on clarity, coherence, and effectiveness in conveying the message.
-  
-  Audience Analysis: Consider the intended audience of the document. How well does it cater to their needs and expectations?
-  
-  Conclusion: Conclude with a final evaluation of the document, emphasizing its significance and potential impact.
-  
-  Your analysis should be concise, fitting into 5 lines, covering all aspects effectively. Note:- Only 5 lines of the result should be provided.
-  
-  Let's dive in:
-  
-  ${extractedText}
+Analysis Report
+
+    Summary:
+        Summarize the main points and arguments presented in the document. (Paragraph)
+    Key Findings:
+        List the most significant findings or insights extracted from the document. Focus on the top two discoveries. (List items)
+    Recommendations:
+        Based on the document's content, suggest any recommendations or actions that should be considered. (List items)
+    (Continue with other sections like Topic Identification, Sentiment Analysis, etc., following the same format)
+    Critical Analysis:
+        Provide a critical assessment of the document, highlighting its strengths, weaknesses, and areas for improvement.
+    Language and Style Evaluation: 
+        Evaluate the language and writing style employed in the document. Comment on clarity, coherence, and effectiveness in conveying the message. 
+    Audience Analysis: 
+        Consider the intended audience of the document. How well does it cater to their needs and expectations?
+    Conclusion: 
+        Conclude with a final evaluation of the document, emphasizing its significance and potential impact.
+
+**Please present the analysis report in a concise and informative manner, using clear and concise language. Limit the report to 5 lines. Provide in such a way that it should be used like a html, dont include html at the start.**
+
+Let's dive in:
+
+${extractedText}
+
+
+Below is the example of the output-
+  <h5>Summary</h5>
+    <p>The document outlines the candidate's qualifications, experiences, and skills.</p>
+  <h5>Key Findings</h5>
+    <ul>
+      <li>Extensive project management experience.</li>
+      <li>Demonstrated strong leadership and communication skills.</li>
+    </ul>
+  <h5>Recommendations</h5>
+    <ul>
+      <li>Consider the candidate for project management roles.</li>
+      <li>Assess communication skills during the interview process.</li>
+    </ul>
+  <h5>Critical Analysis</h5>
+    <p>The document provides a comprehensive overview but lacks specificity in certain areas.</p>
+  <h5>Language and Style Evaluation</h5>
+    <p>The language is clear and coherent, effectively communicating the candidate's qualifications.</p>
+  <h5>Audience Analysis</h5>
+    <p>The document caters well to hiring managers or recruiters, offering relevant information for their decision-making process.</p>
+  <h5>Conclusion</h5>
+    <p>Overall, the document effectively presents the candidate's profile, highlighting strengths and areas for consideration.</p>
+
+please provide like this
   `;
 }
 
