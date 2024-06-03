@@ -59,7 +59,8 @@ export default {
 .chat-container {
     display: flex;
     flex-direction: column;
-    padding-top: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
 }
 
 .chat-box {
@@ -67,8 +68,6 @@ export default {
   overflow-y: auto;
   padding: 10px;
   max-height: 300px;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
 }
 
 .message {

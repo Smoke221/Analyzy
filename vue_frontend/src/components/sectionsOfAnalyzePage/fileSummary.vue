@@ -50,7 +50,9 @@ export default {
 </script>
 <style scoped>
 .container {
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    background-color: rgb(255, 239, 231);
     border-radius: 5px;
+    font-size: 0.95rem;
+    box-shadow: rgb(230, 230, 230) 0px 0px 0px 2px, rgb(202, 202, 202) 0px 0px 0px 4px;
 }
 </style>
