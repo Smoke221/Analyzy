@@ -187,12 +187,14 @@ export default {
 
 .drop-zone {
   border: 2px dashed #ccc;
-  padding: 10px;
+  padding: 20px;
   min-height: 250px;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-radius: 5px;
+  background-color: #f5f5f5;
 }
 
 .selectFile {
@@ -202,6 +204,8 @@ export default {
 
 .file-list {
   margin-top: 10px;
+  list-style: none;
+  padding: 0;
 }
 
 .file-list li {
@@ -214,6 +218,7 @@ export default {
 .remove-button {
   cursor: pointer;
   color: #c8c8c8;
+  transition: color 0.2s ease;
 }
 
 .remove-button:hover {
