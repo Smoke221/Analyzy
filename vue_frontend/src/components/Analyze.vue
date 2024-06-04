@@ -38,6 +38,10 @@ export default {
 .left-container {
     flex: 1;
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .right-container {

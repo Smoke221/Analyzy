@@ -6,6 +6,13 @@
                 <p v-else class="ai-message">{{ message.content }}</p>
             </div>
         </div>
+        <div class="predefined-questions">
+            <button @click="sendPredefinedQuestion('What is the main idea of the document?')">What is the main
+                idea?</button>
+            <button @click="sendPredefinedQuestion('What is the purpose of this document?')">Document purpose?</button>
+            <button @click="sendPredefinedQuestion('Who is the author?')">Author?</button>
+            <button @click="sendPredefinedQuestion('Is there any bias in this document?')">Bias?</button>
+        </div>
         <div class="input-wrapper">
             <input v-model="userInput" placeholder="Type your message..." class="input-box">
             <button @click="hitRoute" class="material-symbols-outlined"
@@ -35,6 +42,12 @@ export default {
         }
     },
     methods: {
+        async sendPredefinedQuestion(question) {
+            this.chatHistory.push({ from: 'user', content: question });
+            const response = await axios.post(`http://localhost:3000/chat/${this.fileId}`, { message: question }, { withCredentials: true });
+            this.geminiResponse = response.data;
+            this.chatHistory.push({ from: 'ai', content: this.geminiResponse });
+        },
         async hitRoute() {
             try {
 
@@ -64,10 +77,10 @@ export default {
 }
 
 .chat-box {
-  flex: 1;
-  overflow-y: auto;
-  padding: 10px;
-  max-height: 300px;
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    max-height: 300px;
 }
 
 .message {
@@ -122,5 +135,25 @@ export default {
     background-color: #007bff;
     color: #fff;
     cursor: pointer;
+}
+
+.predefined-questions {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.predefined-questions button {
+    margin: 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #eee;
+    font-size: 0.8rem;
+}
+
+.predefined-questions button:hover {
+    background-color: #ddd;
 }
 </style>
