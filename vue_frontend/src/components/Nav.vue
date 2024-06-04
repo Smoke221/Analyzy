@@ -59,7 +59,7 @@ export default {
   top: 0;
   display: flex;
   padding: 10px;
-  background-color: #141214;
+  background-color: #2E2E3A;
   justify-content: space-around;
   align-items: center;
   z-index: 10;
@@ -84,7 +84,7 @@ export default {
   position: absolute;
   width: 100%;
   height: 0.17rem;
-  background-color: #55ACEE;
+  background-color: #DE9151;
   left: 0;
   bottom: 0;
   transform-origin: 0% 100%;
@@ -109,7 +109,7 @@ export default {
 }
 
 .nav-button {
-  background-color: #55ACEE;
+  background-color: #DE9151;
   border-radius: 50px;
   position: relative;
   display: inline-block;

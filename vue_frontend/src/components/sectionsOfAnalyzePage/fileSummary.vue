@@ -60,7 +60,7 @@ export default {
     width: 2.5rem;
     height: 2.5rem;
     border: 5px solid #FFF;
-    border-bottom-color: #ff0059;
+    border-bottom-color: #2E2E3A;
     border-radius: 50%;
     display: inline-block;
     box-sizing: border-box;

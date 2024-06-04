@@ -4,7 +4,7 @@
       <div class="intro">
         <h2>Read your documents faster.</h2>
         <p class="intro-text">
-          **Uncover hidden insights in your documents!** Our powerful analysis
+          <span>Uncover hidden insights in your documents!</span> Our powerful analysis
           engine, powered by the AI, will extract key information and provide
           you with a clear understanding of your documents' content. Ask
           follow-up questions to delve deeper and get the most out of your data.
@@ -71,23 +71,23 @@ export default {
   margin: 0 auto;
   max-width: 80%;
 }
-
+.intro{
+  max-width: 70%;
+}
 .intro-text {
   font-size: 1rem;
   margin-bottom: 1rem;
 }
 
 .analyze-button {
-  background-color: #007bff;
+  background-color: #DE9151;
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .analyze-button:hover {
-  background-color: #0069d9;
+  background-color: #de9151c3;
 }
 
 .benefits {
@@ -133,7 +133,7 @@ export default {
 .benefits li p {
   margin: 0;
   font-size: 1.1rem;
-  color: #007bff;
+  color: #BBB8B2;
   text-align: center;
 }
 
@@ -160,7 +160,7 @@ export default {
 }
 
 .benefit-title .highlight {
-  color: #e74c3c;
+  color: #DE9151;
 }
 
 .description {
@@ -172,7 +172,7 @@ export default {
 .get-started-button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #3498db;
+  background-color: #DE9151;
   color: white;
   border: none;
   border-radius: 4px;
@@ -180,6 +180,6 @@ export default {
 }
 
 .get-started-button:hover {
-  background-color: #2980b9;
+  background-color: #DE9151;
 }
 </style>

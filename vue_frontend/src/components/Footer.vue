@@ -123,36 +123,35 @@ ul {
 }
 
 .footer-section {
-    background: #151414;
+    background: #2E2E3A;
     position: relative;
 }
 
 .footer-cta {
-    border-bottom: 1px solid #373636;
+    border-bottom: 1px solid #bbb8b23a;
 }
 
 .single-cta i {
-    color: #55ACEE;
+    color: #DE9151;
     font-size: 30px;
     float: left;
     margin-top: 8px;
 }
 
 .cta-text {
-    padding-left: 15px;
+    padding-left: 1rem;
     display: inline-block;
 }
 
 .cta-text h4 {
     color: #fff;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 1.2rem;
     margin-bottom: 2px;
 }
 
 .cta-text span {
-    color: #757575;
-    font-size: 15px;
+    color: #BBB8B2;
+    font-size: 1rem;
 }
 
 .footer-content {
@@ -184,12 +183,12 @@ ul {
 }
 
 .footer-text h5 {
-    color: #000000;
+    color: #DE9151;
 }
 
 .footer-text p {
     font-size: 14px;
-    color: #7e7e7e;
+    color: #BBB8B2;
     line-height: 28px;
 }
 
@@ -199,7 +198,6 @@ ul {
     font-size: 20px;
     font-weight: 700;
     font-family: 'Poppins', sans-serif;
-    margin-bottom: 20px;
 }
 
 .footer-social-icon a {
@@ -221,7 +219,7 @@ ul {
 }
 
 .twitter-bg {
-    background: #55ACEE;
+    background: #DE9151;
 }
 
 .google-bg {
@@ -243,7 +241,7 @@ ul {
     bottom: -15px;
     height: 2px;
     width: 50px;
-    background: #55ACEE;
+    background: #DE9151;
 }
 
 .footer-widget ul li {
@@ -253,11 +251,11 @@ ul {
 }
 
 .footer-widget ul li a:hover {
-    color: #55ACEE;
+    color: #DE9151;
 }
 
 .footer-widget ul li a {
-    color: #878787;
+    color: #BBB8B2;
     text-transform: capitalize;
 }
 
@@ -269,17 +267,17 @@ ul {
 .subscribe-form input {
     width: 100%;
     padding: 14px 28px;
-    background: #2E2E2E;
-    border: 1px solid #2E2E2E;
+    background: #25252e;
+    border: 1px solid #25252e;
     color: #fff;
 }
 
 .subscribe-form button {
     position: absolute;
     right: 0;
-    background: #55ACEE;
+    background: #DE9151;
     padding: 13px 20px;
-    border: 1px solid #55ACEE;
+    border: 1px solid #DE9151;
     top: 0;
 }
 
@@ -290,7 +288,7 @@ ul {
 }
 
 .copyright-area {
-    background: #202020;
+    background: #25252e;
     padding: 25px 0;
 }
 
@@ -301,7 +299,7 @@ ul {
 }
 
 .copyright-text p a {
-    color: #55ACEE;
+    color: #DE9151;
 }
 
 .footer-menu li {
@@ -310,7 +308,7 @@ ul {
 }
 
 .footer-menu li:hover a {
-    color: #55ACEE;
+    color: #DE9151;
 }
 
 .footer-menu li a {

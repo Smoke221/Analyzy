@@ -16,7 +16,7 @@
             <span @click="removeFile(file)" class="material-symbols-outlined remove-button">delete</span>
           </li>
           <li class="upload-button-container">
-            <button @click="uploadFiles">Upload</button>
+            <button class="upload-button" @click="uploadFiles">Upload</button>
           </li>
         </ul>
       </div>
@@ -199,7 +199,7 @@ export default {
 
 .selectFile {
   cursor: pointer;
-  color: #55ACEE;
+  color: #DE9151;
 }
 
 .file-list {
@@ -217,12 +217,22 @@ export default {
 
 .remove-button {
   cursor: pointer;
-  color: #c8c8c8;
+  color: #BBB8B2;
   transition: color 0.2s ease;
 }
 
 .remove-button:hover {
   color: #888;
+}
+
+.upload-button{
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #DE9151;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .upload-button-container {
