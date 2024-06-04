@@ -25,7 +25,7 @@
           <li>
             <img src="../assets/time-management-icon.svg" alt="">
             <h4>Save Time</h4>
-            <p>Save hours instead of reading PDFs manually yourself.</p>
+            <p>Save hours of reading PDFs manually yourself.</p>
           </li>
           <li>
             <img src="../assets/folder-lock-icon.svg" alt="">
@@ -64,13 +64,16 @@ export default {
 </script>
 
 <style scoped>
-.intro {
-  text-align: center;
+.intro,
+.benefits,
+.why-analyzy {
   padding: 2rem;
+  margin: 0 auto;
+  max-width: 80%;
 }
 
 .intro-text {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -88,21 +91,18 @@ export default {
 }
 
 .benefits {
-  margin-top: 2rem;
   text-align: center;
 }
 
 .benefits h2 {
   margin-bottom: 1rem;
-  font-size: 3rem;
+  font-size: 2rem;
   color: #333;
 }
 
 .benefits ul {
-  list-style: none;
-  padding: 0;
   display: flex;
-  align-items: flex-start;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 
@@ -110,12 +110,11 @@ export default {
   background-color: #f9f9f9;
   padding: 1.5rem;
   border-radius: 10px;
-  box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  width: 30%;
+  width: calc(33.33% - 20px);
   height: 250px;
 }
 
@@ -144,29 +143,20 @@ export default {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  text-align: center;
-  background-color: #fff;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .content {
   max-width: 500px;
-  margin-right: 20px;
 }
 
 .why-title {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 10px;
-  color: #333;
 }
 
 .benefit-title {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 20px;
+  font-size: 2rem;
 }
 
 .benefit-title .highlight {
@@ -174,8 +164,8 @@ export default {
 }
 
 .description {
-  font-size: 18px;
-  margin-bottom: 20px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
   color: #666;
 }
 
@@ -191,15 +181,5 @@ export default {
 
 .get-started-button:hover {
   background-color: #2980b9;
-}
-
-.image-container {
-  max-width: 500px;
-}
-
-.analyzy-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 5px;
 }
 </style>

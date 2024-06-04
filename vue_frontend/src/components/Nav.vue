@@ -55,15 +55,14 @@ export default {
 </script>
 <style scoped>
 .navbar {
-  position: relative;
+  position: sticky;
+  top: 0;
   display: flex;
   padding: 10px;
   background-color: #141214;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 7px 5px 15px -4px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 7px 5px 15px -4px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 7px 5px 15px -4px rgba(0, 0, 0, 0.75);
+  z-index: 10;
 }
 
 .nav-items>ul>li {

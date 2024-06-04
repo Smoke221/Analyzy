@@ -52,6 +52,7 @@ export default {
             try {
 
                 this.chatHistory.push({ from: 'user', content: this.userInput })
+                this.userInput = ''
 
                 const question = { message: this.userInput }
                 const response = await axios.post(`http://localhost:3000/chat/${this.fileId}`, question, { withCredentials: true })
@@ -62,7 +63,6 @@ export default {
             } catch (err) {
                 console.error('Error sending message:', err)
             }
-            this.userInput = ''
         },
     }
 };
@@ -81,6 +81,7 @@ export default {
     overflow-y: auto;
     padding: 10px;
     max-height: 300px;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
 }
 
 .message {
