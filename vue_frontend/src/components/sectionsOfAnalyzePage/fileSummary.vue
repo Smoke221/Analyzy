@@ -1,9 +1,9 @@
 <template>
     <div class="container">
-        <div  v-if="analyzedText" class="analysis-report">
+        <div v-if="analyzedText" class="analysis-report">
             <div v-html="analyzedText"></div>
         </div>
-        <p v-else>Loading analysis...</p>
+        <p class="loader" v-else></p>
     </div>
 </template>
 
@@ -54,5 +54,26 @@ export default {
     border-radius: 5px;
     font-size: 0.95rem;
     box-shadow: rgb(230, 230, 230) 0px 0px 0px 2px, rgb(202, 202, 202) 0px 0px 0px 4px;
+}
+
+.loader {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 5px solid #FFF;
+    border-bottom-color: #ff0059;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 </style>
