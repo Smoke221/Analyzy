@@ -103,8 +103,8 @@ export default {
 .info {
     flex: 1;
     padding: 40px;
-    background: #1d1d1dbf;
-    color: #fff;
+    background: #2E2E3A;
+    /* color: #fff; */
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -130,6 +130,7 @@ export default {
     letter-spacing: 2px;
     white-space: 4px;
     margin-top: 1.5vw;
+    color: #DE9151;
 }
 
 .form-container {
@@ -162,14 +163,14 @@ export default {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background: #55ACEE;
+    background: #DE9151;
     color: #fff;
     cursor: pointer;
     margin-bottom: 10px;
 }
 
 .form button:hover {
-    background: #3498db;
+    background: #c27e46;
 }
 
 .checkbox-container {

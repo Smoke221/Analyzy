@@ -64,6 +64,10 @@ export default {
   align-items: center;
   z-index: 10;
 }
+.nav-logo{
+  font-weight: bold;
+  text-transform: uppercase;
+}
 
 .nav-items>ul>li {
   position: relative;
