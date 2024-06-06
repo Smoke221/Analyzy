@@ -8,6 +8,8 @@ const cors = require("cors");
 var cookieParser = require("cookie-parser");
 const { chatRouter } = require("./routes/chatService");
 const session = require("express-session");
+const requestIp = require('request-ip');
+const { logIpAddress } = require("./middlewares/ipLogger");
 
 require("dotenv").config();
 const app = express();
@@ -28,7 +30,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
+app.use(requestIp.mw());
+app.use(logIpAddress)
 app.get("/", (req, res) => {
   res.send("Homepage");
 });

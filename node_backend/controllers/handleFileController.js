@@ -59,10 +59,18 @@ async function handleFileUploads(req, res) {
         fileFormat
       );
 
+      let isAuthenticated;
+      let requestIP;
+      req.userID
+        ? (isAuthenticated = true)
+        : ((isAuthenticated = false), (requestIP = req.clientIp));
+
       const newFile = new fileModel({
         fileName: uploadedFile.name,
         fileURL: s3UploadResponse.Location,
         owner: req.userID,
+        isAuthenticated,
+        requestIP,
         extractedText: extractedText,
       });
 

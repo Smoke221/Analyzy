@@ -16,7 +16,16 @@ const fileSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+    // required: true,
+  },
+  isAuthenticated: {
+    type: Boolean,
     required: true,
+    default: false,
+  },
+  requestIP: {
+    type: String,
+    // required: true,
   },
   uploadDate: {
     type: Date,
