@@ -30,7 +30,7 @@
     <div class="google-login">
         <button @click="handleGoogleLogin">Login with Google</button>
     </div>
-        <MessageCard ref="messageCard" />
+    <MessageCard ref="messageCard" />
 
 </template>
 
@@ -59,24 +59,62 @@ export default {
         },
         async handleLogin() {
             try {
-                const payload = { email: this.email, password: this.password }
-                const response = await axios.post("http://localhost:3000/auth/login", payload, {
+                const payload = JSON.stringify({ email: this.email, password: this.password });
+                const response = await fetch("http://localhost:3000/auth/login", {
+                    method: "POST",
                     headers: {
-                        'Content-type': 'application/json'
+                        'Content-Type': 'application/json'
                     },
-                    withCredentials: true,
-                })
-                console.log(response.data)
-                this.showMessage("Login successful!")
-            }
-            catch (err) {
-                console.error('Error logging in:', err)
+                    body: payload,
+                });
+
+                if (!response.ok) {
+                    let errorMessage = 'An error occurred while logging in.';
+                    if (response.status === 401) {
+                        errorMessage = 'Wrong password';
+                        this.password = ''
+                    } else if (response.status === 500) {
+                        errorMessage = 'Internal server error';
+                    }
+                    throw new Error(errorMessage);
+                }
+                this.showMessage("Login successful!");
+            } catch (err) {
+                console.error('Error logging in:', err.message);
+                this.showMessage(err.message);
             }
         },
-        handleSignup() {
-            // Handle signup logic
-            console.log('Signing up with', this.username, this.email, this.password);
+
+        async handleSignup() {
+            try {
+                const payload = JSON.stringify({ name: this.username, email: this.email, password: this.password });
+                const response = await fetch("http://localhost:3000/auth/signup", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: payload,
+                });
+
+                if (!response.ok) {
+                    let errorMessage = 'An error occurred while signing up.';
+                    if (response.status === 400) {
+                        errorMessage = 'User already exists. Please log in.';
+                        this.username = ''
+                        this.email = ''
+                        this.password = ''
+                    } else if (response.status === 500) {
+                        errorMessage = 'Internal server error';
+                    }
+                    throw new Error(errorMessage);
+                }
+                this.showMessage("Signup successful!");
+            } catch (err) {
+                console.error('Error signing up:', err.message);
+                this.showMessage(err.message);
+            }
         },
+
         handleGoogleLogin() {
             // Handle Google login logic
             console.log('Logging in with Google');

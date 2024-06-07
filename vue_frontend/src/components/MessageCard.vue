@@ -42,9 +42,9 @@ export default {
     position: fixed;
     top: 50%;
     left: 50%;
-    background-color: #faa640e6;
+    background-color: #ffffff;
     transform: translate(-50%, -50%);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px 30px;
     text-align: center;
     border-radius: 10px;
@@ -53,25 +53,26 @@ export default {
 }
 
 #message-text {
-    font-size: 30px;
+    font-size: 18px;
     color: #333333;
-    position: relative;
-    top: 10px;
+    margin-bottom: 15px;
 }
 
 .close-button {
     position: absolute;
-    top: 0;
+    top: 10px;
     right: 10px;
     cursor: pointer;
-    font-size: 1.5rem;
-    color: #000000;
+    font-size: 1.2rem;
+    color: #777777;
     background: none;
     border: none;
     outline: none;
+    transition: color 0.3s;
 }
 
 .close-button:hover {
     color: #ff0000;
 }
+
 </style>
