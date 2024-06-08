@@ -33,16 +33,16 @@ Analyzy streamlines the document analysis process by utilizing AI algorithms to 
 ## Initial Design Concepts and Overview
 
 ### 1. Login/Signup
-
-
 This section showcases the user-friendly interface for logging in or signing up. It includes easy-to-use buttons like "I'm new" and "I have an account" for seamless switching between login and signup. Users have the option to log in with their Google account for added convenience.
+![Signup-Login](https://github.com/Smoke221/Analyzy/assets/114225283/846f7cf7-1c93-43cb-b875-bfc0179f025b)
+
 
 ### 2. Home and Drag-and-Drop
-
-
 This image illustrates the navigation bar with the "Analyze" option and a drag-and-drop area for effortless file uploads. Users can easily upload files by dragging them into the designated area. Users can view the files uplaoded to S3.
+![Home](https://github.com/Smoke221/Analyzy/assets/114225283/58c26914-d612-4945-83e4-040cf1f58c0b)
+
 
 ### 3. Analyze
-
-
 The Analyze page layout is shown here, with the uploaded file displayed on the right and the AI analysis section on the left. Users can view detailed analysis insights provided by AI algorithms and a chatbox feature where users can interact with the AI by asking predefined and their own questions, enhancing user engagement and usability.
+![Analyze](https://github.com/Smoke221/Analyzy/assets/114225283/bafedd4e-50dd-4ee6-b0ce-46ff8e8d2502)
+
