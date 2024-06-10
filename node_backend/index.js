@@ -39,7 +39,7 @@ app.get("/", (req, res) => {
 app.use("/auth", userRouter);
 app.use("/auth/google", googleRouter);
 
-app.use(authenticate);
+// app.use(authenticate);
 
 app.get("/s", (req, res) => {
   res.send("Secured page.");
