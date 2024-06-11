@@ -1,18 +1,11 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { userModel } = require("../models/user");
-// const { validationResult } = require("express-validator");
 require("dotenv").config();
 
 async function createAccount(req, res) {
   try {
     const { name, email, password } = req.body;
-
-    // // Checking for validation errors
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //   return res.status(400).json({ errors: errors.array() });
-    // }
 
     // Hash the user's password before saving it to the database
     const hash = await bcrypt.hash(password, 10);
@@ -49,7 +42,9 @@ async function login(req, res) {
     // Compare the provided password with the hashed password in the database
     const passwordsMatch = await bcrypt.compare(password, user.password);
     if (!passwordsMatch) {
-      return res.status(401).json({ message: "Password is incorrect, please try again." });
+      return res
+        .status(401)
+        .json({ message: "Password is incorrect, please try again." });
     }
 
     // Create a JWT token for the user's successful login
@@ -57,10 +52,10 @@ async function login(req, res) {
       expiresIn: "1h",
     });
 
-    res.cookie('token', token, {
+    res.cookie("token", token, {
       httpOnly: true,
       secure: true,
-      sameSite: 'Strict',
+      sameSite: "Strict",
     });
 
     res.json({ message: "Login successful." });
