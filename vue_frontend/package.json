@@ -11,6 +11,7 @@
   "dependencies": {
     "@pdftron/webviewer": "^10.9.0",
     "axios": "^1.7.2",
+    "three.js": "^0.77.1",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2",
     "vuex": "^4.1.0"
