@@ -29,6 +29,9 @@ Analyzy streamlines the document analysis process by utilizing AI algorithms to 
  - Plan to incorporate tools that will allow us to gather valuable feedback and analytics from our users.
 
 
+## Deployements
+
+  ### [Backend is deployed on google app engine](https://analyzy.el.r.appspot.com/)
 
 ## Initial Design Concepts and Overview
 
