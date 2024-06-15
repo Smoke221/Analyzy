@@ -37,8 +37,8 @@ describe("User Controller", () => {
     });
 
     it("should return an error if the user already exists", async () => {
-    //   This line mocks the userModel.findOne method to always return a resolved promise with an object containing the email "existing@example.com".
-    //   This simulates the scenario where the user already exists in the database.
+      //   This line mocks the userModel.findOne method to always return a resolved promise with an object containing the email "existing@example.com".
+      //   This simulates the scenario where the user already exists in the database.
       userModel.findOne.mockResolvedValue({ email: "existing@example.com" });
 
       const response = await request(app).post("/createAccount").send({
@@ -63,6 +63,27 @@ describe("User Controller", () => {
 
       expect(response.status).toBe(500);
       expect(response.body.message).toBe("Internal server error");
+    });
+  });
+
+  describe("login", () => {
+    it("should log in the user successfully", async () => {
+      userModel.findOne.mockResolvedValue({
+        email: "john@example.com",
+        password: "hashedPassword",
+        _id: "userId123",
+      });
+
+      bcrypt.compare.mockResolvedValue(true);
+      jwt.sign.mockReturnValue("token123");
+
+      const response = await request(app)
+        .post("/login")
+        .send({ email: "john@example.com", password: "password123" });
+
+      expect(response.status).toBe(200);
+      expect(response.body.message).toBe("Login successful.");
+      expect(response.headers["set-cookie"][0]).toContain("token=token123");
     });
   });
 });
