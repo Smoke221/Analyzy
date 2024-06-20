@@ -27,7 +27,8 @@ googleRouter.get(
       expiresIn: "1hr",
     });
     // Successful authentication, redirect home.
-    res.redirect("/");
+    res.cookie('token', token, { httpOnly: true });
+    res.redirect("http://localhost:5173/");
   }
 );
 
