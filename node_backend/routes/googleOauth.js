@@ -21,14 +21,24 @@ googleRouter.get(
     failureRedirect: "/login",
     session: false,
   }),
-  function (req, res) {
-    let user = req.user;
-    const token = jwt.sign({ userID: user._id }, "secret", {
-      expiresIn: "1hr",
-    });
-    // Successful authentication, redirect home.
-    res.cookie('token', token, { httpOnly: true });
-    res.redirect("https://analyzy.vercel.app/");
+  async function (req, res) {
+    try {
+      let user = req.user;
+      const token = jwt.sign({ userID: user._id }, process.env.JWT_SECRET, {
+        expiresIn: "1h",
+      });
+
+      // Set JWT token in an HTTP-only cookie
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "Strict",
+      });
+      res.redirect(`http://localhost:5173/?userName=${encodeURIComponent(user.name)}`);
+    } catch (err) {
+      console.error("Error in Google OAuth callback:", err);
+      res.status(500).json({ message: "Internal server error" });
+    }
   }
 );
 
@@ -42,7 +52,10 @@ passport.use(
     },
     async function (request, accessToken, refreshToken, profile, cb) {
       let email = profile._json.email;
-      let existedUserData = await userModel.findOne({ email, provider: "google" });
+      let existedUserData = await userModel.findOne({
+        email,
+        provider: "google",
+      });
       if (existedUserData) {
         return cb(null, existedUserData);
       }
@@ -55,7 +68,7 @@ passport.use(
         provider: profile.provider,
       });
       await user.save();
-      return cb(null, user);
+      return cb(null, user, {userName: name});
     }
   )
 );

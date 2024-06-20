@@ -58,7 +58,7 @@ async function login(req, res) {
       sameSite: "Strict",
     });
 
-    res.json({ message: "Login successful." });
+    res.json({ message: "Login successful.", userName: user.name });
   } catch (err) {
     console.error("Error logging in:", err);
     res.status(500).json({ message: "Internal server error" });
