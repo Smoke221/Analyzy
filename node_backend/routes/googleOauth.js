@@ -34,7 +34,7 @@ googleRouter.get(
         secure: true,
         sameSite: "Strict",
       });
-      res.redirect(`http://localhost:5173/?userName=${encodeURIComponent(user.name)}`);
+      res.redirect(`https://analyzy.vercel.app/?userName=${encodeURIComponent(user.name)}`);
     } catch (err) {
       console.error("Error in Google OAuth callback:", err);
       res.status(500).json({ message: "Internal server error" });
