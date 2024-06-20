@@ -28,7 +28,7 @@ googleRouter.get(
     });
     // Successful authentication, redirect home.
     res.cookie('token', token, { httpOnly: true });
-    res.redirect("http://localhost:5173/");
+    res.redirect("https://analyzy.vercel.app/");
   }
 );
 
