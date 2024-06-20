@@ -116,8 +116,7 @@ export default {
         },
 
         handleGoogleLogin() {
-            // Handle Google login logic
-            console.log('Logging in with Google');
+            window.location.href = "http://localhost:3000/auth/google";
         },
     },
 };
