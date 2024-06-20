@@ -25,7 +25,7 @@ app.use(
 );
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://analyzy.vercel.app",
   credentials: true,
 };
 
