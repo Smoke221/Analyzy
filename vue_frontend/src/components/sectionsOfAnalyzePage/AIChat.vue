@@ -44,7 +44,7 @@ export default {
     methods: {
         async sendPredefinedQuestion(question) {
             this.chatHistory.push({ from: 'user', content: question });
-            const response = await axios.post(`http://localhost:3000/chat/${this.fileId}`, { message: question }, { withCredentials: true });
+            const response = await axios.post(`https://analyzy.el.r.appspot.com/chat/${this.fileId}`, { message: question }, { withCredentials: true });
             this.geminiResponse = response.data;
             this.chatHistory.push({ from: 'ai', content: this.geminiResponse });
         },
@@ -55,7 +55,7 @@ export default {
                 this.userInput = ''
 
                 const question = { message: this.userInput }
-                const response = await axios.post(`http://localhost:3000/chat/${this.fileId}`, question, { withCredentials: true })
+                const response = await axios.post(`https://analyzy.el.r.appspot.com/chat/${this.fileId}`, question, { withCredentials: true })
                 this.geminiResponse = response.data
 
                 this.chatHistory.push({ from: 'ai', content: this.geminiResponse })

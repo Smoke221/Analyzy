@@ -28,7 +28,7 @@ export default {
             try {
                 const fileId = this.$route.params.fileId;
                 store.commit('setFileId', fileId)
-                const response = await axios.get(`http://localhost:3000/analyz/${fileId}`)
+                const response = await axios.get(`https://analyzy.el.r.appspot.com/analyz/${fileId}`)
                 if (response.status === 200) {
                     const data = response.data;
                     this.fileName = data.isFileExists.fileName;

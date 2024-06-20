@@ -8,7 +8,7 @@ export default {
     async deleteFile(fileID) {
       try {
         const response = await axios.delete(
-          `http://localhost:3000/delete/${fileID}`
+          `https://analyzy.el.r.appspot.com/delete/${fileID}`
         );
         console.log('File deleted.');
       } catch (error) {

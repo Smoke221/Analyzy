@@ -57,7 +57,7 @@ export default {
 
     onMounted(async () => {
       try {
-        const response = await axios.get("http://localhost:3000/files");
+        const response = await axios.get("https://analyzy.el.r.appspot.com/files");
         if (response.status === 200) {
           uploadedFiles.value = response.data.files;
         } else {
@@ -129,7 +129,7 @@ export default {
           formData.append('uploadedFile', file);
         });
 
-        const response = await axios.post('http://localhost:3000/upload', formData, {
+        const response = await axios.post('https://analyzy.el.r.appspot.com/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

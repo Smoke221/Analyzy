@@ -60,7 +60,7 @@ export default {
         async handleLogin() {
             try {
                 const payload = JSON.stringify({ email: this.email, password: this.password });
-                const response = await fetch("http://localhost:3000/auth/login", {
+                const response = await fetch("https://analyzy.el.r.appspot.com/auth/login", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json'
@@ -90,7 +90,7 @@ export default {
         async handleSignup() {
             try {
                 const payload = JSON.stringify({ name: this.username, email: this.email, password: this.password });
-                const response = await fetch("http://localhost:3000/auth/signup", {
+                const response = await fetch("https://analyzy.el.r.appspot.com/auth/signup", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json'
@@ -118,7 +118,7 @@ export default {
         },
 
         handleGoogleLogin() {
-            window.location.href = "http://localhost:3000/auth/google";
+            window.location.href = "https://analyzy.el.r.appspot.com/auth/google";
         },
     },
 };
