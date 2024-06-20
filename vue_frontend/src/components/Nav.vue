@@ -11,9 +11,13 @@
         <li><a href="#"> Contact </a></li>
       </ul>
     </div>
-    <div class="nav-button">
+    <div class="nav-button" v-if="isLoggedIn">
+      <h6 class="greeting">Welcome, {{ username }}</h6>
+      <a @click="logout">Logout</a>
+    </div>
+    <div class="nav-button" v-else>
       <div class="anim-layer"></div>
-      <a><router-link to="/auth">Signup</router-link></a>
+      <a><router-link to="/auth">Hi, Login</router-link></a>
     </div>
     <div id="hamburger-menu" @click="toggleMobileMenu">&#9776;</div>
   </div>
@@ -40,7 +44,16 @@ export default {
   data() {
     return {
       isMobileMenuOpen: false,
+      isLoggedIn: false,
+      username: "",
     };
+  },
+  created() {
+    const user = sessionStorage.getItem("userName");
+    if (user) {
+      this.isLoggedIn = true;
+      this.username = user;
+    }
   },
   methods: {
     toggleMobileMenu() {
@@ -49,6 +62,11 @@ export default {
       if (window.innerWidth > 770) {
         this.isMobileMenuOpen = false; // Hide menu on resize
       }
+    },
+    logout() {
+      sessionStorage.removeItem("userName");
+      this.isLoggedIn = false;
+      this.username = "";
     },
   },
 };
@@ -64,7 +82,8 @@ export default {
   align-items: center;
   z-index: 10;
 }
-.nav-logo{
+
+.nav-logo {
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -119,6 +138,13 @@ export default {
   display: inline-block;
   overflow: hidden;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.greeting {
+  margin: 5px;
 }
 
 .anim-layer {

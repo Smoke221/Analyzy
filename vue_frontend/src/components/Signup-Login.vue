@@ -78,6 +78,8 @@ export default {
                     }
                     throw new Error(errorMessage);
                 }
+                const { userName } = await response.json()
+                sessionStorage.setItem("userName", userName)
                 this.showMessage("Login successful!");
             } catch (err) {
                 console.error('Error logging in:', err.message);
