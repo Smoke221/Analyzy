@@ -304,4 +304,45 @@ export default {
   flex-wrap: wrap;
   gap: 1em;
 }
+
+@media (max-width: 480px) {
+  .file-container {
+    width: 100%;
+  }
+
+  .drop-zone {
+    padding: 10px;
+    min-height: 150px;
+  }
+
+  .upload-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .uploaded-files-container h2,
+  .file-container h2 {
+    font-size: 16px;
+  }
+
+  .file-list li {
+    align-items: center;
+  }
+
+  .uploaded-files-container li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .uploaded-files-container li div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #buttons-container {
+    flex-direction: column;
+    gap: 0.5em;
+  }
+}
 </style>
