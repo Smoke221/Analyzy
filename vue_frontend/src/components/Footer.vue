@@ -17,7 +17,7 @@
                             <i class="fas fa-phone"></i>
                             <div class="cta-text">
                                 <h4>Call us</h4>
-                                <span>+91 00000 00000</span>
+                                <span>+91 8121792408</span>
                             </div>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                             <i class="far fa-envelope-open"></i>
                             <div class="cta-text">
                                 <h4>Mail us</h4>
-                                <span>sample@info.com</span>
+                                <span>ismoketechlabs@gmail.com</span>
                             </div>
                         </div>
                     </div>
@@ -248,6 +248,7 @@ ul {
     display: inline-block;
     width: 50%;
     margin-bottom: 12px;
+    font-size: 0.8rem;
 }
 
 .footer-widget ul li a:hover {

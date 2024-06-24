@@ -71,7 +71,7 @@ export default {
   margin: 0 auto;
   max-width: 80%;
 }
-.intro{
+.intro {
   max-width: 70%;
 }
 .intro-text {
@@ -84,6 +84,7 @@ export default {
   color: white;
   padding: 10px 20px;
   border: none;
+  cursor: pointer;
 }
 
 .analyze-button:hover {
@@ -116,6 +117,7 @@ export default {
   justify-content: space-around;
   width: calc(33.33% - 20px);
   height: 250px;
+  margin-bottom: 1rem;
 }
 
 .benefits li img {
@@ -182,4 +184,186 @@ export default {
 .get-started-button:hover {
   background-color: #DE9151;
 }
+
+@media (max-width: 1200px) {
+  .benefits li {
+    width: calc(45% - 20px);
+  }
+
+  .why-analyzy {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .image-container {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .benefits ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .benefits li {
+    width: 80%;
+    margin-bottom: 1rem;
+  }
+
+  .intro-text {
+    font-size: 0.9rem;
+  }
+
+  .analyze-button {
+    padding: 8px 16px;
+  }
+
+  .benefit-title {
+    font-size: 1.8rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .get-started-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .why-analyzy {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content {
+    text-align: center;
+    max-width: 100%;
+    padding: 0 15px;
+  }
+
+  .why-title {
+    font-size: 1.4rem;
+  }
+
+  .benefit-title {
+    font-size: 1.6rem;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .get-started-button {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .image-container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .analyzy-image {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-text {
+    font-size: 0.8rem;
+  }
+
+  .analyze-button{
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+
+  .benefits h2 {
+    font-size: 1.5rem;
+  }
+
+  .benefits ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .benefits li {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+
+  .benefits li h4 {
+    font-size: 1.2rem;
+  }
+
+  .benefits li p {
+    font-size: 0.8rem;
+  }
+
+  .benefits li img {
+    max-width: 80px;
+  }
+
+  .benefit-title {
+    font-size: 1.6rem;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .get-started-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .why-analyzy {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content {
+    text-align: center;
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .why-title {
+    font-size: 1.2rem;
+  }
+
+  .description {
+    font-size: 0.7rem;
+  }
+
+  .get-started-button {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+
+  .image-container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .analyzy-image {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
 </style>
