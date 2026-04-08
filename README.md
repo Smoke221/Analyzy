@@ -30,7 +30,7 @@ Analyzy streamlines the document analysis process by utilizing AI algorithms to 
 
 ## Deployements
 
-  ### [Backend is deployed on google app engine](https://analyzy.el.r.appspot.com/)
+  ### [[Backend is deployed on Render free tier, it may take time to spinup the server (50seconds)](https://analyzy.onrender.com)
 
 ## Environment (quick reference)
 
