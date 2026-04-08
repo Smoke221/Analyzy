@@ -2,8 +2,10 @@ import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "./components/Home.vue";
 import Container from "./components/Container.vue";
-import SignupLogin from "./components/Signup-Login.vue";
+import Auth from "./components/Auth.vue";
 import Analyze from "./components/Analyze.vue";
+import { store } from "./vuex/store.js";
+import "./tokens.css";
 import "./style.css";
 import App from "./App.vue";
 
@@ -26,8 +28,8 @@ const routes = [
   },
   {
     path: "/auth",
-    name: "Signup-Login",
-    component: SignupLogin,
+    name: "Auth",
+    component: Auth,
     meta: { hideComponent: true },
   },
 ];
@@ -35,6 +37,7 @@ const routes = [
 const router = createRouter({ history: createWebHistory(), routes });
 
 const app = createApp(App);
+app.use(store);
 app.use(router);
 app.mount("#app");
 

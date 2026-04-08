@@ -60,6 +60,14 @@
 <script>
 export default {
   components: {},
+  mounted() {
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("userName");
+    if (name) {
+      sessionStorage.setItem("userName", name);
+      this.$router.replace({ path: "/", query: {} });
+    }
+  },
 };
 </script>
 

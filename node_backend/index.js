@@ -1,9 +1,10 @@
 const express = require("express");
 const { connectionToMongo } = require("./configurations/mongoDB");
-const { userRouter } = require("./routes/userRoute");
 const { authenticate } = require("./middlewares/authenticate");
 const { analyzeFileRouter } = require("./routes/analyzeFile");
 const { googleRouter } = require("./routes/googleOauth");
+const { authRouter } = require("./routes/authRoute");
+const passport = require("passport");
 const cors = require("cors");
 var cookieParser = require("cookie-parser");
 const { chatRouter } = require("./routes/chatService");
@@ -23,9 +24,10 @@ app.use(
     cookie: { secure: "auto" },
   })
 );
+app.use(passport.initialize());
 
 const corsOptions = {
-  origin: "https://analyzy.vercel.app",
+  origin: "http://localhost:5173",
   credentials: true,
 };
 
@@ -36,8 +38,8 @@ app.get("/", (req, res) => {
   res.send("Homepage");
 });
 
-app.use("/auth", userRouter);
 app.use("/auth/google", googleRouter);
+app.use("/auth", authRouter);
 
 // app.use(authenticate);
 

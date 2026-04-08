@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const generativeModel = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash-latest",
+  model: "gemini-2.5-flash-lite",
 });
 
 async function analyzeFileData(extractedText) {

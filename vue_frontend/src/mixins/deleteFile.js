@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { client } from "../api/client.js";
 
 export default {
   data() {
@@ -7,12 +7,10 @@ export default {
   methods: {
     async deleteFile(fileID) {
       try {
-        const response = await axios.delete(
-          `https://analyzy.el.r.appspot.com/delete/${fileID}`
-        );
-        console.log('File deleted.');
+        await client.delete(`/delete/${fileID}`);
       } catch (error) {
-        console.error("Error fetching files:", error);
+        console.error("Error deleting file:", error);
+        throw error;
       }
     },
   },

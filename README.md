@@ -8,10 +8,9 @@ Analyzy streamlines the document analysis process by utilizing AI algorithms to 
 
 ## Features
 
-- **Sign Up/Login:**
-  - Users can sign up or log in with their credentials.
-  - Seamless transition between sign-up and login screens.
-  - Option for logging in with Google.
+- **Optional Google sign-in:**
+  - Guests can use Analyzy without an account (uploads are associated with the client IP for listing).
+  - Users may optionally sign in with Google; the backend sets an HTTP-only session cookie after OAuth.
 
 - **Home and Drag & Drop:**
   - Navigation to various sections including the Analyze page.
@@ -33,10 +32,16 @@ Analyzy streamlines the document analysis process by utilizing AI algorithms to 
 
   ### [Backend is deployed on google app engine](https://analyzy.el.r.appspot.com/)
 
+## Environment (quick reference)
+
+**Backend (`node_backend/.env`):** `MONGOURL`, `JWT_SECRET`, `GEMINI_API_KEY`, AWS keys, `BUCKET_NAME`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_callbackURL`, and `FRONTEND_URL` (your SPA origin, used for Google OAuth redirects).
+
+**Frontend (`vue_frontend/.env`):** `VITE_API_URL` — backend base URL (no trailing slash), e.g. `http://localhost:8000` for local API.
+
 ## Initial Design Concepts and Overview
 
-### 1. Login/Signup
-This section showcases the user-friendly interface for logging in or signing up. It includes easy-to-use buttons like "I'm new" and "I have an account" for seamless switching between login and signup. Users have the option to log in with their Google account for added convenience.
+### 1. Optional sign-in (Google)
+The auth screen offers continuing as a guest or signing in with Google for optional account-scoped behavior when enabled on the server.
 ![Signup-Login](https://github.com/Smoke221/Analyzy/assets/114225283/846f7cf7-1c93-43cb-b875-bfc0179f025b)
 
 

@@ -5,10 +5,12 @@ const jwt = require("jsonwebtoken");
 
 const { v4: uuidv4 } = require("uuid");
 const { userModel } = require("../models/user");
+const { tokenCookieOptions } = require("../configurations/authTokenCookie");
 
 require("dotenv").config();
 
 const googleRouter = express.Router();
+const FRONTEND_URL = process.env.FRONTEND_URL;
 
 googleRouter.get(
   "/",
@@ -18,7 +20,7 @@ googleRouter.get(
 googleRouter.get(
   "/callback",
   passport.authenticate("google", {
-    failureRedirect: "/login",
+    failureRedirect: FRONTEND_URL ? `${FRONTEND_URL}/auth?error=google` : "/",
     session: false,
   }),
   async function (req, res) {
@@ -28,13 +30,9 @@ googleRouter.get(
         expiresIn: "1h",
       });
 
-      // Set JWT token in an HTTP-only cookie
-      res.cookie("token", token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "Strict",
-      });
-      res.redirect(`https://analyzy.vercel.app/?userName=${encodeURIComponent(user.name)}`);
+      res.cookie("token", token, tokenCookieOptions);
+      const redirectBase = FRONTEND_URL || "https://analyzy.vercel.app";
+      res.redirect(`${redirectBase}/?userName=${encodeURIComponent(user.name)}`);
     } catch (err) {
       console.error("Error in Google OAuth callback:", err);
       res.status(500).json({ message: "Internal server error" });

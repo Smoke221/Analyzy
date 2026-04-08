@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-xl-4 col-md-4 mb-30">
                         <div class="single-cta">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <span class="material-symbols-outlined footer-icon" aria-hidden="true">location_on</span>
                             <div class="cta-text">
                                 <h4>Find us</h4>
                                 <span>Bengaluru, India</span>
@@ -14,7 +14,7 @@
                     </div>
                     <div class="col-xl-4 col-md-4 mb-30">
                         <div class="single-cta">
-                            <i class="fas fa-phone"></i>
+                            <span class="material-symbols-outlined footer-icon" aria-hidden="true">call</span>
                             <div class="cta-text">
                                 <h4>Call us</h4>
                                 <span>+91 8121792408</span>
@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-xl-4 col-md-4 mb-30">
                         <div class="single-cta">
-                            <i class="far fa-envelope-open"></i>
+                            <span class="material-symbols-outlined footer-icon" aria-hidden="true">mail</span>
                             <div class="cta-text">
                                 <h4>Mail us</h4>
                                 <span>ismoketechlabs@gmail.com</span>
@@ -46,10 +46,10 @@
                                     get answers from your documents with our AI-powered analysis.</p>
                             </div>
                             <div class="footer-social-icon">
-                                <span>Follow us</span>
-                                <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
-                                <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
-                                <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
+                                <span>Contact</span>
+                                <a class="social-link" href="mailto:ismoketechlabs@gmail.com" aria-label="Email">
+                                    <span class="material-symbols-outlined social-link__icon">mail</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -59,16 +59,9 @@
                                 <h3>Useful Links</h3>
                             </div>
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">about</a></li>
-                                <li><a href="#">services</a></li>
-                                <li><a href="#">portfolio</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Our Services</a></li>
-                                <li><a href="#">Expert Team</a></li>
-                                <li><a href="#">Contact us</a></li>
-                                <li><a href="#">Latest News</a></li>
+                                <li><router-link to="/">Home</router-link></li>
+                                <li><router-link to="/analyzy">Analyze</router-link></li>
+                                <li><router-link to="/auth">Sign in</router-link></li>
                             </ul>
                         </div>
                     </div>
@@ -81,9 +74,11 @@
                                 <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
                             </div>
                             <div class="subscribe-form">
-                                <form action="#">
-                                    <input type="text" placeholder="Email Address">
-                                    <button><i class="fab fa-telegram-plane"></i></button>
+                                <form action="#" @submit.prevent>
+                                    <input type="email" placeholder="Email address (coming soon)" disabled>
+                                    <button type="button" disabled aria-label="Subscribe disabled">
+                                        <span class="material-symbols-outlined">send</span>
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -96,17 +91,15 @@
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 text-center text-lg-left">
                         <div class="copyright-text">
-                            <p>Copyright &copy; 2024, All Right Reserved <a href="#">Smoke</a></p>
+                            <p>Copyright &copy; 2024, All Right Reserved <router-link to="/">Analyzy</router-link></p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
                         <div class="footer-menu">
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Terms</a></li>
-                                <li><a href="#">Privacy</a></li>
-                                <li><a href="#">Policy</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><router-link to="/">Home</router-link></li>
+                                <li><router-link to="/analyzy">Analyze</router-link></li>
+                                <li><router-link to="/auth">Sign in</router-link></li>
                             </ul>
                         </div>
                     </div>
@@ -115,7 +108,11 @@
         </div>
     </footer>
 </template>
-<script></script>
+<script>
+export default {
+  name: "FooterBar",
+};
+</script>
 <style scoped>
 ul {
     margin: 0px;
@@ -131,7 +128,7 @@ ul {
     border-bottom: 1px solid #bbb8b23a;
 }
 
-.single-cta i {
+.footer-icon {
     color: #DE9151;
     font-size: 30px;
     float: left;
@@ -200,30 +197,21 @@ ul {
     font-family: 'Poppins', sans-serif;
 }
 
-.footer-social-icon a {
-    color: #fff;
-    font-size: 16px;
-    margin-right: 15px;
-}
-
-.footer-social-icon i {
+.footer-social-icon a.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     height: 40px;
     width: 40px;
-    text-align: center;
-    line-height: 38px;
+    margin-right: 15px;
     border-radius: 50%;
-}
-
-.facebook-bg {
-    background: #3B5998;
-}
-
-.twitter-bg {
     background: #DE9151;
+    color: #fff;
+    text-decoration: none;
 }
 
-.google-bg {
-    background: #DD4B39;
+.social-link__icon {
+    font-size: 22px;
 }
 
 .footer-widget-heading h3 {
@@ -258,6 +246,7 @@ ul {
 .footer-widget ul li a {
     color: #BBB8B2;
     text-transform: capitalize;
+    text-decoration: none;
 }
 
 .subscribe-form {
@@ -282,10 +271,9 @@ ul {
     top: 0;
 }
 
-.subscribe-form button i {
+.subscribe-form button .material-symbols-outlined {
     color: #fff;
     font-size: 22px;
-    transform: rotate(-6deg);
 }
 
 .copyright-area {

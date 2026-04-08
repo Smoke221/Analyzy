@@ -1,5 +1,18 @@
 const mongoose = require("mongoose");
 
+const chatMessageSchema = new mongoose.Schema(
+  {
+    role: {
+      type: String,
+      enum: ["user", "assistant"],
+      required: true,
+    },
+    content: { type: String, required: true },
+    createdAt: { type: Date, default: Date.now },
+  },
+  { _id: false }
+);
+
 const fileSchema = new mongoose.Schema({
   fileName: {
     type: String,
@@ -12,6 +25,16 @@ const fileSchema = new mongoose.Schema({
   extractedText: {
     type: String,
     // required: true,
+  },
+  cachedAnalysis: {
+    type: String,
+  },
+  analysisUpdatedAt: {
+    type: Date,
+  },
+  chatHistory: {
+    type: [chatMessageSchema],
+    default: [],
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
